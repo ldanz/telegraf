@@ -429,6 +429,7 @@ func TestRabbitMQGeneratesMetrics(t *testing.T) {
 		"fd_used",
 		"mem_limit",
 		"mem_used",
+		"num_partitions",
 		"proc_total",
 		"proc_used",
 		"run_queue",

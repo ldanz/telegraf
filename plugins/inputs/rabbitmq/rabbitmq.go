@@ -120,17 +120,18 @@ type Queue struct {
 type Node struct {
 	Name string
 
-	DiskFree      int64 `json:"disk_free"`
-	DiskFreeLimit int64 `json:"disk_free_limit"`
-	FdTotal       int64 `json:"fd_total"`
-	FdUsed        int64 `json:"fd_used"`
-	MemLimit      int64 `json:"mem_limit"`
-	MemUsed       int64 `json:"mem_used"`
-	ProcTotal     int64 `json:"proc_total"`
-	ProcUsed      int64 `json:"proc_used"`
-	RunQueue      int64 `json:"run_queue"`
-	SocketsTotal  int64 `json:"sockets_total"`
-	SocketsUsed   int64 `json:"sockets_used"`
+	DiskFree      int64    `json:"disk_free"`
+	DiskFreeLimit int64    `json:"disk_free_limit"`
+	FdTotal       int64    `json:"fd_total"`
+	FdUsed        int64    `json:"fd_used"`
+	MemLimit      int64    `json:"mem_limit"`
+	MemUsed       int64    `json:"mem_used"`
+	Partitions    []string `json:"partitions"`
+	ProcTotal     int64    `json:"proc_total"`
+	ProcUsed      int64    `json:"proc_used"`
+	RunQueue      int64    `json:"run_queue"`
+	SocketsTotal  int64    `json:"sockets_total"`
+	SocketsUsed   int64    `json:"sockets_used"`
 }
 
 // gatherFunc ...
@@ -308,6 +309,7 @@ func gatherNodes(r *RabbitMQ, acc telegraf.Accumulator) {
 			"fd_used":         node.FdUsed,
 			"mem_limit":       node.MemLimit,
 			"mem_used":        node.MemUsed,
+			"num_partitions":  int64(len(node.Partitions)),
 			"proc_total":      node.ProcTotal,
 			"proc_used":       node.ProcUsed,
 			"run_queue":       node.RunQueue,
